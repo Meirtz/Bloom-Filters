@@ -10,6 +10,8 @@ end
 def hash_index (str)
   x = fvn_1(str)
   y = str.hash % 2048
+  #puts x
+  #puts y
   [x, y]
 end
 
@@ -21,6 +23,10 @@ end
 
 def check (str, bit_array)
   x, y = hash_index(str)
+  #puts x
+  #puts y
+  #puts bit_array[x]
+  #puts bit_array[y]
   return true if bit_array[x] == 1 and bit_array[y] == 1
   return false
 end
@@ -72,13 +78,17 @@ class BitArray
   end
 end
 
-#puts fvn_1 "hello"
-str_array = ["wo", "bc", "jiu", "shi", "diao"]
+# main
 bit_array = BitArray.new(2048)
+while true
+  input = gets().split(" ")
+  command = input.delete_at(0)
+  #puts input
+  if command == "insert"
+    input.each() {|str| str_to_bit_array(str, bit_array)}
+  else
+    input.each() { |str| puts "#{str}:  maybe" if check(str, bit_array) or puts "#{str}: never" } if command == "check" or puts "#{command}: wrong command"
+  end
 
-# save hashed bit info to bit_array
-str_array.each() { |str| str_to_bit_array(str, bit_array) }
+end
 
-#check example
-puts "maybe" if check("bc",bit_array) or puts "never"
-puts "maybe" if check("meirtz",bit_array) or puts "never"
