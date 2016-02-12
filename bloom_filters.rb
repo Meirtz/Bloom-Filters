@@ -9,7 +9,7 @@ end
 
 def hash_index (str)
   x = fvn_1(str)
-  y = str.hash % 2048
+  y = str.hash % 2048 # ruby builtin method hash use murmur algorithm
   #puts x
   #puts y
   [x, y]
